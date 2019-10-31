@@ -6,8 +6,10 @@ import onionGpio
 
 time.sleep(30)
 
-gpioNum = 17
-gpioObj = onionGpio.OnionGpio(gpioNum)
+gpioNum1 = 17
+gpioNum2 = 11
+gpioObj1 = onionGpio.OnionGpio(gpioNum1)
+gpioObj2 = onionGpio.OnionGpio(gpioNum2)
 status  = gpioObj.setInputDirection()
 
 
@@ -20,11 +22,12 @@ while True:
 
 
         while True:
-            value = gpioObj.getValue()
+            value1 = gpioObj1.getValue()
+            value2 = gpioObj2.getValue()
             ##print 'GPIO%d input value: %d'%(gpioNum, int(valor))
             ##mens = value
             ##byt=mens.encode()
-            obj.send(value)
+            obj.send(value1,value2)
 
             ##print (mens)
             time.sleep(0.5)
@@ -37,4 +40,3 @@ while True:
 
     finally:
         pass
-
