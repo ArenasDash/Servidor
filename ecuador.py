@@ -3,14 +3,16 @@
 import socket
 import time
 import onionGpio
+import json
 
-time.sleep(30)
+##time.sleep(30)
 
 gpioNum1 = 17
 gpioNum2 = 11
 gpioObj1 = onionGpio.OnionGpio(gpioNum1)
 gpioObj2 = onionGpio.OnionGpio(gpioNum2)
-status  = gpioObj.setInputDirection()
+status1  = gpioObj1.setInputDirection()
+status2  = gpioObj2.setInputDirection()
 
 
 while True:
@@ -27,10 +29,15 @@ while True:
             ##print 'GPIO%d input value: %d'%(gpioNum, int(valor))
             ##mens = value
             ##byt=mens.encode()
-            obj.send(value1,value2)
+            out = {
+            	"GPIO17":value1,
+            	"GPIO11":value2
+            }
+            out = json.dumps(out)
+            obj.send(out)
 
             ##print (mens)
-            time.sleep(0.5)
+            time.sleep(1)
 
         obj.close()
         print("Conexión cerrada")
