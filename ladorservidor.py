@@ -18,9 +18,9 @@ while True:
             peticion= servidor.recv(1024)
             print (peticion)
             
-        servidor.close()
+        
         
     except Exception as e:
         print(e)
-        servidor.close()
+        
         del ser
